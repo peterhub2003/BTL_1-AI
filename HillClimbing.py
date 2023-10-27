@@ -11,26 +11,13 @@ def swap(queens,N,x1,x2):
     queens[x1] = queens[x2]
     queens[x2] = temp
 
-'''def countConflicts(queens,N):
-    rows = {}
-    rdiags = {}
-    ldiags = {}
-    for col, row in enumerate(queens):
-        rows[row] = rows.get(row, -1) + 1
-        rdiags[row - col] = rdiags.get(row - col, -1) + 1
-        ldiags[row - (N - col)] = ldiags.get(row - (N - col), -1) + 1
-    conflicts = []
-    for col, row in enumerate(queens):
-        conflicts.append(rows.get(row, 0) + rdiags.get(row - col, 0) + ldiags.get(row - (N - col), 0))
-    return sum(conflicts)//2'''
 def heuristic(queens,N):
         result=0
-        [lineCount,mainDiaCount,secDiaCount] = [Counter() for i in range(3)]
+        [mainDiaCount,secDiaCount] = [Counter() for i in range(2)]
         for i in range(N):
-            lineCount[queens[i]] += 1
             mainDiaCount[queens[i]-i] += 1
             secDiaCount[queens[i]+i] +=1
-        for count in [lineCount,mainDiaCount,secDiaCount]:
+        for count in [mainDiaCount,secDiaCount]:
             for i in count:
                 result += count[i]*(count[i]-1)//2
         return result
