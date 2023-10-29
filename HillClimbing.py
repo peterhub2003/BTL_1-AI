@@ -46,7 +46,6 @@ def hC(N):
                     h=newH
                     break
 def randRestart(N,max_times=1000):
-    hit = 0
     for i in range(max_times):
         hillClimb = hC(N)
         if hillClimb[1] == True:
